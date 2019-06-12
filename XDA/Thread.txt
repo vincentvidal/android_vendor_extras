@@ -4,7 +4,7 @@
 
 [IMG]https://raw.githubusercontent.com/Havoc-OS/android_vendor_extras/pie/XDA/Images/About.png[/IMG]
 [INDENT][SIZE="3"][B]Havoc-OS 2.x is based on AOSP, inspired by Google Pixel.
-Has a refined Material Design 2 UI by @SKULSHADY.
+Has a refined Material Design 2 UI by [MENTION=7578917]SKULSHADY[/MENTION].
 So many features that you probably won't find in any ROM.
 All you can dream of and all you'll ever need.
 Just flash and enjoy...[/B][/SIZE][/INDENT]
@@ -351,22 +351,34 @@ Advanced Battery Info
 
 
 [IMG]https://raw.githubusercontent.com/Havoc-OS/android_vendor_extras/pie/XDA/Images/Links.png[/IMG]
-[INDENT][SIZE="3"][B]ROM:[/B] [URL]https://sourceforge.net/projects/havoc-os/files/[/URL]
+[INDENT][SIZE="3"][B]ROM (GSI) DOWNLOADS:[/B][LIST]
+[*][SIZE="3"][B][URL="https://bit.ly/2RbK7Xx"]ARM64-AONLY[/URL][/B][/SIZE]
+[*][SIZE="3"][B][URL="https://bit.ly/2wOJKZv"]ARM64-AB[/URL][/B][/SIZE]
+[*][SIZE="3"][B][URL="https://bit.ly/2KeEpTW"]ARM-AONLY[/URL][/B][/SIZE]
+[*][SIZE="3"][B][URL="https://bit.ly/2Kblz05"]A64-AONLY (ARM32-BINDER64)[/URL][/B][/SIZE][/LIST]
 [B]Recovery:[/B] [URL]https://twrp.me[/URL]
 [B]Changelog:[/B] [URL]http://bit.ly/Havoc_Changelog[/URL]
 [B]Open GApps:[/B] [URL]http://opengapps.org[/URL]
 [B]Magisk:[/B] [URL]https://forum.xda-developers.com/apps/magisk/official-magisk-v7-universal-systemless-t3473445[/URL]
-[B]Telegram Support Group:[/B] [url]https://t.me/havocofficial[/url]
+[B]Telegram General Support Group:[/B] [url]https://t.me/havocofficial[/url]
+[B]Telegram GSI Support Group:[/B] [url]https://t.me/joinchat/FxCi5k1TYJCaeyesr7dAHg[/url]
 [B]Telegram Announcements Channel:[/B] [url]https://t.me/Havoc_OS[/url]
 [B]Discord Server:[/B] [url]https://discord.gg/YfhBCj4[/url][/SIZE][/INDENT]
 
 
 [IMG]https://raw.githubusercontent.com/Havoc-OS/android_vendor_extras/pie/XDA/Images/Installation.png[/IMG]
-[INDENT][SIZE="3"][B]1.[/B] Download the ROM, GApps (Optional), Magisk (Optional) from the links above.
-[B]2.[/B] Wipe System, Data, Dalvik, Cache.
-[B]3.[/B] Flash the ROM, GApps (Optional), Magisk (Optional).
-[B]4.[/B] Reboot and Enjoy.[/SIZE][/INDENT]
+[INDENT][SIZE="3"]
+You can find more detailed information on what is a GSI and how to flash it on [URL="https://github.com/phhusson/treble_experimentations/wiki"]phhusson treble wiki[/URL]. The basic steps are:
 
+[B]1.[/B] Download the GSI from the links above, and uncompress it.
+[B]2.[/B] Wipe Data, Dalvik, and Cache.
+[B]3.[/B] Flash the GSI to system partition (AB devices : flashing a vbmeta.img file for your device may also be required).
+[B]4.[/B] Boot and perform a factory reset.
+[B]5.[/B] (Optional) Reboot and flash GApps, Magisk, and maybe additional files (see below, GSI Specific Information).
+[B]6.[/B] Reboot and Enjoy.
+
+If you want to update a previous installation of the Havoc-OS GSI, you can also always try to dirty flash, i.e. wipe Dalvik and Cache (not Data) and flash System image. But if you experience a strange behavior, a clean flash may be required.
+[/SIZE][/INDENT]
 
 [IMG]https://raw.githubusercontent.com/Havoc-OS/android_vendor_extras/pie/XDA/Images/Credits.png[/IMG]
 [INDENT][SIZE="3"]LineageOS ([url]https://github.com/LineageOS[/url])
@@ -377,6 +389,7 @@ Omnirom ([url]https://github.com/omnirom[/url])
 MSM-Xtended Team ([url]https://github.com/Project-Xtended[/url])
 Skydragon ([url]https://gitlab.com/HolyDragonProject[/url])
 Syberia Project ([url]https://github.com/syberia-project[/url])
+ [MENTION=1915408]phhusson[/MENTION] for its tremendous work on GSIs
 And all the other Developers, Testers, Donators and Users.[/SIZE][/INDENT]
 
 
@@ -384,3 +397,21 @@ And all the other Developers, Testers, Donators and Users.[/SIZE][/INDENT]
 [INDENT][SIZE="3"][url]https://github.com/Havoc-OS[/url]
 [url]https://github.com/Havoc-Devices[/url][/SIZE][/INDENT]
 
+
+[SIZE=6][COLOR="Red"][U][B][I]GSI Specific Information[/I][/B][/U][/COLOR][/SIZE]
+[B]Bootloops:[/B] for users experiencing bootloops, you can try to use [URL="https://forum.xda-developers.com/android/software-hacking/mod-kernel-permissive-patcher-android-t3506338"]this patch[/URL], or any other that could work, in order to make your kernel boot in permissive mode. Custom kernels for your device may also help. Incompatibilities exist between ROMs and vendor SELinux policies, that can cause bootloops. Some progress has been made since 20190527 build with debugging Havoc's sepolicy (big thanks to [MENTION=1915408]phhusson[/MENTION] for giving explanations and pointing me out with the good tools), but some problems may remain.
+
+[B]Goodies:[/B] A few specific improvements, not guaranteed to work for everyone...
+[LIST]
+[*][B]VoLTE:[/B] For Qualcomm based devices (not mtk, not exynos...), you may enable VoLTE by installing the file [ATTACH]4771761[/ATTACH] as a normal application.
+[*][B]Automatic Brightness:[/B] Flash [ATTACH]4771762[/ATTACH] in TWRP. A specific overlay for your device may be missing in [URL="https://github.com/phhusson/vendor_hardware_overlay"]Phh overlay collection[/URL], for automatic brightness or other features. I encourage you to submit new ones for missing devices. This flashable zip will install the file [FONT="Lucida Console"]treble-overlay-auto-brightness.apk[/FONT] in [FONT="Lucida Console"]/vendor/overlay[/FONT].
+[*][B]Always On Display (AOD):[/B] If you have an AMOLED screen and your device never triggers doze (deep sleep) while in AOD, flash [ATTACH]4771763[/ATTACH] in TWRP. The reason is the same as above, a missing overlay for your device. This flashable zip will install the file [FONT="Lucida Console"]treble-overlay-aod.apk[/FONT] in [FONT="Lucida Console"]/vendor/overlay[/FONT].
+[*][B]Hide notch:[/B] If your display has a notch, you can enable the cutout controller which will permit to hide it or leave its foreground black (Havoc settings -> Screen -> Display Cutout) by flashing [ATTACH]4775099[/ATTACH]. This property is Havoc dependent, so do not submit an overlay that enables it to Phh overlay collection. This flashable zip will install the file [FONT="Lucida Console"]treble-overlay-cutout.apk[/FONT] in [FONT="Lucida Console"]/vendor/overlay[/FONT].
+[/LIST]
+
+
+[B][U]Contributors[/U][/B]
+[URL="https://forum.xda-developers.com/member.php?u=7932843"]vince31fr[/URL]
+[B]ROM OS VERSION:[/B] 9.x Pie
+[B]ROM TYPE:[/B] Generic System Image (GSI)
+[B]BASED ON:[/B] AOSP
